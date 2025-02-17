@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tablero de Pobreza en México</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['geochart', 'corechart', 'bar', 'line']});
+    google.charts.setOnLoadCallback(drawCharts);
+
+    function drawCharts() {
+      // Gráfico 1: Mapa de Pobreza por Estado
+      var data1 = google.visualization.arrayToDataTable([
+        ['Estado', 'Pobreza (%)'],
+        ['Aguascalientes', 33.78],
+        ['Baja California', 26.97],
+        ['Baja California Sur', 25.50],
+        ['Campeche', 45.78],
+        ['Coahuila', 27.65],
+        ['Colima', 32.55],
+        ['Chiapas', 76.65],
+        ['Chihuahua', 32.92],
+        ['Ciudad de México', 28.60],
+        ['Durango', 44.48],
+        ['Guanajuato', 44.92],
+        ['Guerrero', 65.30],
+        ['Hidalgo', 51.90],
+        ['Jalisco', 34.85],
+        ['México', 45.33],
+        ['Michoacán', 54.18],
+        ['Morelos', 48.35],
+        ['Nayarit', 40.58],
+        ['Nuevo León', 19.12],
+        ['Oaxaca', 65.72],
+        ['Puebla', 62.23],
+        ['Querétaro', 34.40],
+        ['Quintana Roo', 33.23],
+        ['San Luis Potosí', 48.63],
+        ['Sinaloa', 34.42],
+        ['Sonora', 29.13],
+        ['Tabasco', 52.45],
+        ['Tamaulipas', 36.08],
+        ['Tlaxcala', 56.50],
+        ['Veracruz', 57.23],
+        ['Yucatán', 45.47],
+        ['Zacatecas', 52.10]
+      ]);
+
+      var options1 = {
+        region: 'MX',
+        displayMode: 'regions',
+        colorAxis: {colors: ['#f7f7f7', '#e31a1c']},
+        resolution: 'provinces',
+        backgroundColor: '#f0f0f0',
+        datalessRegionColor: '#ffffff',
+        defaultColor: '#f4f4f4'
+      };
+      var chart1 = new google.visualization.GeoChart(document.getElementById('regions_div'));
+      chart1.draw(data1, options1);
+
+      // Gráfico 2: Evolución de la Pobreza
+      var data2 = google.visualization.arrayToDataTable([
+        ['Año', 'Pobreza (%)', 'Pobreza extrema (%)'],
+        [2008, 44.4, 11.0],
+        [2010, 46.1, 11.3],
+        [2012, 45.5, 9.8],
+        [2014, 46.2, 9.5],
+        [2016, 43.6, 7.6],
+        [2018, 41.9, 7.4]
+      ]);
+      var options2 = {
+        title: 'Evolución de la Pobreza en México (2008-2018)',
+        curveType: 'function',
+        legend: { position: 'bottom' },
+        hAxis: { title: 'Año' },
+        vAxis: { title: 'Porcentaje de Pobreza' }
+      };
+      var chart2 = new google.visualization.LineChart(document.getElementById('chart_div1'));
+      chart2.draw(data2, options2);
+
+      // Gráfico 3: Comparación de Pobreza Rural y Urbana
+      var data3 = google.visualization.arrayToDataTable([
+        ['Tipo de Pobreza', 'Rural', 'Urbana'],
+        ['Pobreza', 38.9, 33.0],
+        ['Pobreza extrema', 16.4, 4.5]
+      ]);
+      var options3 = {
+        chart: {
+          title: 'Comparación de Pobreza Rural y Urbana en 2018',
+          subtitle: 'Porcentaje de pobreza y pobreza extrema en áreas rurales y urbanas',
+        },
+        bars: 'grouped',
+        vAxis: { title: 'Porcentaje' },
+        hAxis: { title: 'Tipo de pobreza' }
+      };
+      var chart3 = new google.charts.Bar(document.getElementById('barchart_material'));
+      chart3.draw(data3, google.charts.Bar.convertOptions(options3));
+
+      // Gráfico 4: Pobreza Extrema Rural y Urbana
+      var data4 = google.visualization.arrayToDataTable([
+        ['Año', 'Pobreza Extrema Rural', 'Pobreza Extrema Urbana'],
+        [2008, 27.1, 6.2],
+        [2010, 26.5, 6.7],
+        [2012, 21.5, 6.3],
+        [2014, 20.6, 6.2],
+        [2016, 17.4, 4.7],
+        [2018, 16.4, 4.5]
+      ]);
+      var options4 = {
+        chart: {
+          title: 'Pobreza Extrema Rural y Urbana (2008-2018)',
+          subtitle: 'Comparación de pobreza extrema en áreas rurales y urbanas',
+        },
+        bars: 'vertical',
+        hAxis: { title: 'Año' },
+        vAxis: { title: 'Porcentaje de Pobreza Extrema' },
+        colors: ['#FF5733', '#33A7FF']
+      };
+      var chart4 = new google.charts.Bar(document.getElementById('chart_div5'));
+      chart4.draw(data4, google.charts.Bar.convertOptions(options4));
+
+      // Gráfico 5: Pobreza por Sexo
+      var data5 = google.visualization.arrayToDataTable([
+        ['Año', 'Mujeres', 'Hombres'],
+        [2008, 22.2, 22.2],
+        [2010, 23.0, 23.0],
+        [2012, 22.7, 22.7],
+        [2014, 23.1, 23.1],
+        [2016, 21.8, 21.8],
+        [2018, 20.0, 20.0]
+      ]);
+      var options5 = {
+        chart: {
+          title: 'Pobreza por Sexo (2008-2018)',
+          subtitle: 'Porcentaje de pobreza por género',
+        },
+        isStacked: true,
+        hAxis: { title: 'Año' },
+        vAxis: { title: 'Porcentaje de Pobreza' },
+        colors: ['#FF6347', '#4682B4']
+      };
+      var chart5 = new google.charts.Bar(document.getElementById('chart_div4'));
+      chart5.draw(data5, google.charts.Bar.convertOptions(options5));
+    }
+  </script>
+</head>
+<body>
+  <h1>Tablero de Pobreza en México (2008-2018)</h1>
+
+  <!-- Gráfico 1: Mapa de Pobreza por Estado -->
+  <h2>Mapa de Pobreza por Estado</h2>
+  <div id="regions_div" style="width: 900px; height: 500px;"></div>
+
+  <!-- Gráfico 2: Evolución de la Pobreza -->
+  <h2>Evolución de la Pobreza en México (2008-2018)</h2>
+  <div id="chart_div1" style="width: 900px; height: 500px;"></div>
+
+  <!-- Gráfico 3: Comparación de Pobreza Rural y Urbana -->
+  <h2>Comparación de Pobreza Rural y Urbana en 2018</h2>
+  <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+
+  <!-- Gráfico 4: Pobreza Extrema Rural y Urbana -->
+  <h2>Pobreza Extrema Rural y Urbana (2008-2018)</h2>
+  <div id="chart_div5" style="width: 900px; height: 500px;"></div>
+
+  <!-- Gráfico 5: Pobreza por Sexo -->
+  <h2>Pobreza por Sexo (2008-2018)</h2>
+  <div id="chart_div4" style="width: 900px; height: 500px;"></div>
+</body>
+</html>
