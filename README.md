@@ -79,15 +79,7 @@ No existe una brecha de género marcada en términos de incidencia porcentual.
 🧭 Conclusiones generales
 
 La pobreza en México mantiene una distribución regional desigual, afectando más al sur del país.
-
 La pobreza extrema sí disminuye de manera constante, lo que implica avances importantes en bienestar básico.
-
 Las zonas rurales siguen siendo las más vulnerables, con niveles de pobreza extrema alarmantes.
-
 No se observa una brecha significativa de pobreza por sexo, según los datos presentados.
-
 Los avances son visibles, pero la reducción de la pobreza total requiere políticas integrales y sostenidas.
-
-✍️ Autor
-
-Ejercicio desarrollado por: [Tu nombre]
